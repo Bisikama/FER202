@@ -1,0 +1,272 @@
+/* Root variables for light theme */
+:root {
+  --primary-color: #667eea;
+  --secondary-color: #764ba2;
+  --background-color: #f8fafc;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  --primary-color: #81e6d9;
+  --secondary-color: #4fd1c7;
+  --background-color: #1a202c;
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --card-bg: #2d3748;
+  --border-color: #4a5568;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+.App {
+  min-height: 100vh;
+  background: var(--background-color);
+  transition: background-color 0.3s ease;
+}
+
+/* Header styles */
+.app-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  box-shadow: 0 4px 20px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.title-icon {
+  font-size: 3rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.app-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-top: 5px;
+}
+
+/* Theme toggle styles */
+.theme-toggle-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 10px 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-toggle-container .form-check-label {
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.theme-toggle-container .form-check-input {
+  cursor: pointer;
+}
+
+/* Main content styles */
+main {
+  padding: 40px 0;
+  min-height: calc(100vh - 200px);
+}
+
+/* Container adjustments */
+.container, .container-fluid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Ensure full width usage */
+body {
+  overflow-x: hidden;
+}
+
+.App {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* List title styles */
+h2 {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 2.2rem;
+  margin-bottom: 3rem !important;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+/* Footer styles */
+.app-footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+/* Modal enhancements */
+.modal-content {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px var(--shadow);
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-color);
+  background: var(--background-color);
+  border-radius: 0 0 20px 20px;
+}
+
+/* Detail item styles in modal */
+.detail-item h6 {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.detail-item p {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .title-icon {
+    font-size: 2.5rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1rem;
+  }
+  
+  .theme-toggle-container {
+    margin-top: 15px;
+  }
+  
+  main {
+    padding: 20px 0;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+/* Grid system improvements */
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row > [class*="col-"] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Smooth transitions for all interactive elements */
+.btn, .card, .modal-content {
+  transition: all 0.3s ease;
+}
+
+/* Custom scrollbar for dark theme */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}

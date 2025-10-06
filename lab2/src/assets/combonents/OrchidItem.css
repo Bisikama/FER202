@@ -1,0 +1,106 @@
+.orchid-card {
+  background: var(--card-bg, #ffffff);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color, #e0e0e0);
+  position: relative;
+}
+
+.orchid-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.orchid-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.orchid-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.orchid-card:hover .orchid-image {
+  transform: scale(1.05);
+}
+
+.special-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 215, 0, 0.9);
+  padding: 5px 8px;
+  border-radius: 50%;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.orchid-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.orchid-name {
+  color: var(--text-primary, #333);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 15px;
+}
+
+.star-filled {
+  color: #ffd700;
+  font-size: 16px;
+}
+
+.star-empty {
+  color: #ddd;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Dark theme styles */
+[data-theme="dark"] .orchid-card {
+  --card-bg: #2d3748;
+  --border-color: #4a5568;
+  --text-primary: #e2e8f0;
+  background: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .orchid-name {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .orchid-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}

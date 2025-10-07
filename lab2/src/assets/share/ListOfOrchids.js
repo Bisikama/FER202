@@ -10,7 +10,8 @@ export const ListOfOrchids = [
     color: 'Pink',
     numberOfLike: 192,
     origin: 'Taiwan',
-    category: 'Cattleya'
+    category: 'Cattleya',
+    clip: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
   },
   {
     id: '2',
@@ -34,7 +35,8 @@ export const ListOfOrchids = [
     color: 'Blue',
     numberOfLike: 250,
     origin: 'India',
-    category: 'Vanda'
+    category: 'Vanda',
+    clip: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
   },
   {
     id: '4',
@@ -82,7 +84,8 @@ export const ListOfOrchids = [
     color: 'Green-Brown',
     numberOfLike: 300,
     origin: 'Borneo',
-    category: 'Paphiopedilum'
+    category: 'Paphiopedilum',
+    clip: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
   },
   {
     id: '8',

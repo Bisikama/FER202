@@ -6,6 +6,9 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Detail from './pages/Detail';
 import Contact from './pages/Contact';
+import About from './pages/About';
+import Natural from './pages/Natural';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
 function App() {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -14,24 +17,25 @@ function App() {
     <Router>
       <div className="App">
         <header className="app-header">
-          <div className="container">
-            <div className="row align-items-center py-3">
-              <div className="col-md-8">
-                <h1 className="app-title mb-0">
-                  <span className="title-icon">🌺</span>
-                  Orchids Collection
-                </h1>
-                <p className="app-subtitle mb-0">Discover the beauty of nature's finest flowers</p>
-              </div>
-              <div className="col-md-4 text-end d-flex justify-content-end align-items-center gap-3">
-                <nav className="me-3">
-                  <Link to="/" className="btn btn-link text-decoration-none">Home</Link>
-                  <Link to="/contact" className="btn btn-link text-decoration-none">Contact</Link>
-                </nav>
-                <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
-              </div>
-            </div>
-          </div>
+          <Navbar bg={isDarkMode ? 'dark' : 'light'} variant={isDarkMode ? 'dark' : 'light'} expand="lg" className="py-3">
+            <Container>
+              <Navbar.Brand as={Link} to="/">
+                <span className="title-icon">🌺</span> Orchids Collection
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="main-navbar" />
+              <Navbar.Collapse id="main-navbar">
+                <Nav className="me-auto">
+                  <Nav.Link as={Link} to="/">Home</Nav.Link>
+                  <Nav.Link as={Link} to="/natural">Natural</Nav.Link>
+                  <Nav.Link as={Link} to="/about">About</Nav.Link>
+                  <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+                </Nav>
+                <div className="d-flex align-items-center">
+                  <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
+                </div>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
         </header>
 
         <main>
@@ -39,6 +43,8 @@ function App() {
             <Route path="/" element={<OrchidsFlowerList />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/natural" element={<Natural />} />
           </Routes>
         </main>
 

@@ -2,12 +2,13 @@ import { ListOfOrchids } from '../share/ListOfOrchids';
 import { useState } from 'react';
 import OrchidItem from './OrchidItem';
 import { useTheme } from '../../hooks/useTheme';
+import { Link } from 'react-router-dom';
 import '../css/theme.css';
 
 export default function Orchids() {
   const [orchids, setOrchids] = useState(ListOfOrchids);
   const { theme, toggleTheme } = useTheme();
-  const [selectedOrchid, setSelectedOrchid] = useState(null);
+  // const [selectedOrchid, setSelectedOrchid] = useState(null);
   return (
     <div className="container-fluid mt-4">
       <button className="theme-toggle-btn" onClick={toggleTheme}> {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'} </button>
@@ -42,68 +43,16 @@ export default function Orchids() {
               style={{ height: '250px' }}
             />
             <h4 className="text-center">{orchid.name}</h4>
-            <button className="btn btn-outline-primary" onClick={() => setSelectedOrchid(orchid)} >
-              <i className="bi bi-info-circle me-1"></i>
-              Detail </button> </div>
-        ))}
-        #-- Modal for displaying orchid details ---
-        {selectedOrchid && (
-          <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1">
-            <div className="modal-dialog modal-dialog-centered modal-lg">
-              <div
-                className="modal-content"
-                style={{
-                  backgroundColor: 'var(--bg-color)',
-                  color: 'var(--text-color)',
-                }}
-              >
-                <div className="modal-header">
-                  <h5 className="modal-title">{selectedOrchid.name}</h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    onClick={() => setSelectedOrchid(null)}
-                  ></button>
-                </div>
+            <button className="btn btn-outline-primary">
+              <Link to={`/detail/${orchid.id}`} className="text-decoration-none">
+                <i className="bi bi-info-circle me-1"></i> Detail
+              </Link>
+            </button>
 
-                <div className="modal-body">
-                  <div className="row align-items-center">
-                    {/* Ảnh bên trái */}
-                    <div className="col-md-6 text-center">
-                      <img
-                        src={"imgs/" + selectedOrchid.image}
-                        alt={selectedOrchid.name}
-                        className="img-fluid rounded shadow"
-                        style={{ maxHeight: '300px' }}
-                      />
-                    </div>
-
-                    {/* Thông tin bên phải */}
-                    <div className="col-md-6">
-                      <p><strong>Origin:</strong> {selectedOrchid.origin}</p>
-                      <p><strong>Color:</strong> {selectedOrchid.color}</p>
-                      <p><strong>Category:</strong> {selectedOrchid.category}</p>
-                      <p><strong>Rating:</strong> {selectedOrchid.rating}⭐</p>
-                      <p>{selectedOrchid.isSpecial ? "🌟 Special Orchid" : "Regular Orchid"}</p>
-                      <p>{selectedOrchid.isNatural ? "Natural" : "Hybrid"}</p>
-                      <p>❤️ {selectedOrchid.numberOfLike} likes</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setSelectedOrchid(null)}
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
-        )}
+        ))}
+  
+
       </div>
     </div>
   )

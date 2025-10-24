@@ -11,10 +11,11 @@ export default function NavigationBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link to="/">Home</Link>
-            {/* <Nav.Link as={Link} to="/link">Link</Nav.Link>
+            <Nav.Link as={Link} to="/link">Link</Nav.Link>
             <Nav.Link as={Link} to="/all-lessons">All Lessons</Nav.Link>
-            <Nav.Link as={Link} to="/completed-lessons">Completed Lessons</Nav.Link> */}
-      
+            <Nav.Link as={Link} to="/completed-lessons">Completed Lessons</Nav.Link> 
+            <Nav.Link as={Link} to="/add-lessons">Add Lessons</Nav.Link>
+            <Link to="/detail/:id">Detail</Link>
           </Nav>
         </Navbar.Collapse>
     </Navbar>

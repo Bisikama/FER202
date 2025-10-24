@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, Col, Card, Table, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Table, Button, Toast,Image } from 'react-bootstrap'
 import { useNavigate } from 'react-router'
-import { getCompletedLessons } from '../services/lessons.service'
+import { getCompletedLessons ,deleteLessons} from '../services/lessons.service'
 
 export default function CompletedLessons() {
   const [lessons, setLessons] = useState([])
   const navigate = useNavigate()
-
+  const [show, setShow] = useState(true)
+  const [success, setSuccess] = useState(false)
   useEffect(() => {
     fetchAllLessons()
   }, [])
@@ -24,32 +25,47 @@ export default function CompletedLessons() {
       console.error('Error fetching lessons:', error)
     }
   }
-
+  const handleDelete = async (id) => {
+    // Implement delete functionality here
+    setShow(true);
+    await deleteLessons(id);
+    setSuccess(true);
+  }
   return (
+    <>
     <Container>
       <Row>
+        <Toast
+        className='position-fixed top-0 end-0 mx-3'
+        onClose={() => setShow(false)} show={show} delay={3000} autohide>
+          <Toast.Body>{success ? 'Lesson deleted successfully!' : 'Error deleting lesson.'}</Toast.Body>
+        </Toast>
         <Table striped bordered hover>
           <thead>
             <tr>
               <th>Image</th>
-              <th>Instructor</th>
-              <th>Duration</th>
+              <th>Title</th>
+              <th>Time</th>
+              <th>Level</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {lessons.map((l, idx) => (
-              <tr key={l.id ?? idx}>
-                <td>{idx + 1}</td>
-                <td>{l.name}</td>
-                <td>{l.instructor}</td>
-                <td>{l.duration} mins</td>
+            {lessons.map((l) => (
+              <tr key={l.id}>
+                <td><Image  variant="top" src={l.lessonImage} style={{height :200, objectFit:'cover'}} alt={l.lessonsTitle} rounded /></td>
+                <td>{l.lessonsTitle}</td>
+                <td>{l.estimatedTime ? l.estimatedTime.toLocaleString() : 'N/A'}</td>
+                <td>{l.level}</td>
+                <td>EDIT </td>
+                <td>DELETE <span onClick={() => {if (confirm("Are you sure you want to edit this lesson?"))  handleDelete(`${l.id}`)}}>✏️</span></td>
               </tr>
             ))}
           </tbody>
         </Table>
-      </Row>
+    </Row>
 
-      <Row>
+      {/* <Row>
         {lessons.map((l) => (
           <Col key={l.id} md={3}>
             <Card className="h-100" style={{ width: '18rem' }}>
@@ -72,7 +88,8 @@ export default function CompletedLessons() {
             </Card>
           </Col>
         ))}
-      </Row>
+      </Row> */}
     </Container>
+    </>
   )
 }

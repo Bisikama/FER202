@@ -25,11 +25,11 @@ export default function AllLessons() {
             {lessons.map((l) => (
               <Col key={l.id} md={3}>
      <Card className='h-100' style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={l.image} style={{height :200, objectFit:'cover'}} 
+      <Card.Img variant="top" src={l.lessonImage} style={{height :200, objectFit:'cover'}} 
         onClick={()=> navigate(`lessons/${l.id}`)}
       />
       <Card.Body>
-        <Card.Title>{l.name}</Card.Title>
+        <Card.Title>{l.lessonsTitle}</Card.Title>
         <Card.Text>
           Some quick example text to build on the card title and make up the
           bulk of the card's content.

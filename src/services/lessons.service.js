@@ -21,4 +21,35 @@ const getCompletedLessons = async () => {
   }
  
 }
-export { getLessons ,getCompletedLessons};
+
+const getDetailLessons = async (id) => {
+  try {
+    const resp = await axios.get(baseURL + `/${id}`);
+    return resp;
+  } catch (error) {
+    console.error("Error fetching lessons:", error);
+  }
+ 
+}
+
+const deleteLessons = async (id) => {
+  try {
+    const resp = await axios.delete(`${baseURL}/${id}`);
+    return resp;
+  } catch (error) {
+    console.error("Error deleting lessons:", error);
+  }
+
+}
+
+const createLessons = async (lessonData) => {
+  try {
+    const resp = await axios.post(baseURL, lessonData);
+    return resp;
+  } catch (error) {
+    console.error("Error adding lessons:", error);
+  }
+}
+
+
+export { getLessons ,getCompletedLessons,getDetailLessons, deleteLessons, createLessons}; 

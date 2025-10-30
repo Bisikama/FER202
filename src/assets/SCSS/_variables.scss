@@ -1,0 +1,59 @@
+// Colors
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$danger-color: #dc3545;
+
+// Light Theme Colors
+$light-bg: #f8f9fa;
+$light-text: #212529;
+$light-card-bg: #ffffff;
+$light-border: #dee2e6;
+$light-shadow: rgba(0, 0, 0, 0.1);
+
+// Dark Theme Colors
+$dark-bg: #1a1a1a;
+$dark-text: #f8f9fa;
+$dark-card-bg: #2d2d2d;
+$dark-border: #444444;
+$dark-shadow: rgba(0, 0, 0, 0.3);
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+// Typography
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-sm: 0.875rem;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-weight-bolder: 700;
+
+// Border Radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-pill: 50rem;
+
+// Transitions
+$transition-base: all 0.3s ease;
+$transition-fast: all 0.15s ease;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Z-index
+$z-index-badge: 10;
+$z-index-modal: 1000;

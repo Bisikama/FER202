@@ -1,0 +1,54 @@
+// Import variables
+@use './variables' as *;
+@use './OrchidDetail.scss';
+@use './About.scss';
+
+// Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Selection color
+::selection {
+  background-color: $primary-color;
+  color: white;
+}
+
+// Link styles
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: $transition-base;
+}
+
+// Button reset
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+// Image styles
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

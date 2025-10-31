@@ -1,28 +1,69 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
-import { ListOfOrchids } from '../share/ListOfOrchids';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrchidById, clearSelectedOrchid } from '../../store/slices/orchidSlice';
 import { useTheme } from '../../hooks/useTheme';
 import '../SCSS/OrchidDetail.scss';
 
 export default function OrchidDetail() {
   const { id } = useParams();
-  const orchid = ListOfOrchids.find(o => o.id === (id));
+  const dispatch = useDispatch();
+  const { selectedOrchid: orchid, loading, error } = useSelector((state) => state.orchids);
   const { theme, toggleTheme } = useTheme();
 
-  if (!orchid) return (
-    <div className={`orchid-detail ${theme}-theme`}>
-      <div className="detail-card not-found">
-        <button 
-          className="theme-btn" 
-          onClick={toggleTheme}
-        >
-          {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
-        </button>
-        <p className="error-message">❌ Orchid not found.</p>
-        <Link to="/" className="back-btn">← Back</Link>
+  // Fetch orchid khi component mount
+  useEffect(() => {
+    dispatch(fetchOrchidById(id));
+    
+    // Cleanup khi component unmount
+    return () => {
+      dispatch(clearSelectedOrchid());
+    };
+  }, [dispatch, id]);
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className={`orchid-detail ${theme}-theme`}>
+        <div className="detail-card">
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <p className="mt-3">Loading orchid details...</p>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  // Error or not found state
+  if (error || !orchid) {
+    return (
+      <div className={`orchid-detail ${theme}-theme`}>
+        <div className="detail-card not-found">
+          <button 
+            className="theme-btn" 
+            onClick={toggleTheme}
+          >
+            {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+          </button>
+          <p className="error-message">
+            {error ? `❌ Error: ${error}` : '❌ Orchid not found.'}
+          </p>
+          <div className="d-flex gap-3 justify-content-center">
+            <Link to="/" className="back-btn">← Back to List</Link>
+            <button 
+              className="back-btn" 
+              onClick={() => dispatch(fetchOrchidById(id))}
+            >
+              🔄 Retry
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`orchid-detail ${theme}-theme`}>
@@ -44,7 +85,7 @@ export default function OrchidDetail() {
             <div className="image-section image-divider">
               <div className="image-container">
                 <img
-                  src={"/imgs/" + orchid.image}
+                  src={orchid.image}
                   alt={orchid.name}
                 />
                 <div className="like-badge">

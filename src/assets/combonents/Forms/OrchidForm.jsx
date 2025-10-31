@@ -2,8 +2,8 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addOrchid, editOrchid } from '../../store/slices/orchidSlice';
-import './OrchidForm.scss';
+import { addOrchid, editOrchid } from '../../../store/slices/orchidSlice';
+import '../../SCSS/OrchidForm.scss';
 
 // Validation Schema
 const orchidValidationSchema = Yup.object({

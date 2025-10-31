@@ -18,7 +18,7 @@ export default function AboutMe() {
             <div className="avatar">
               👨‍💻
             </div>
-            <h1>Your Name</h1>
+            <h1>Nguyễn Minh Bảo</h1>
             <p className="title">Full Stack Developer | React Enthusiast</p>
         
           </div>

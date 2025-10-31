@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Base URL của MockAPI (thay YOUR_PROJECT_ID bằng ID thực tế của bạn)
-const BASE_URL = 'https://YOUR_PROJECT_ID.mockapi.io/api/v1';
+// Base URL của MockAPI từ environment variables
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://6704347d0a340b270a44.mockapi.io/orchids";
 
 // Tạo axios instance
 const api = axios.create({

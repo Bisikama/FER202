@@ -1,9 +1,9 @@
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import { loginSuccess, loginFailure } from '../../store/slices/authSlice';
+import { loginSuccess, loginFailure } from '../../../store/slices/authSlice';
 import { jwtDecode } from 'jwt-decode';
-import './Login.scss';
+import '../../SCSS/Login.scss';
 
 export default function Login({ onLoginSuccess }) {
   const dispatch = useDispatch();

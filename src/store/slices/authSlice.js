@@ -1,5 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Admin emails list - hardcoded
+const ADMIN_EMAILS = [
+  'admin@orchid.com',
+  'orchidadmin@gmail.com',
+  'minhbao28032005@gmail.com'
+];
+
+// Helper function to determine user role
+const getUserRole = (email) => {
+  return ADMIN_EMAILS.includes(email?.toLowerCase()) ? 'admin' : 'member';
+};
+
 const initialState = {
   user: null,
   isAuthenticated: false,
@@ -19,11 +31,19 @@ const authSlice = createSlice({
     loginSuccess: (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;
-      state.user = action.payload.user;
+      
+      // Add role to user object
+      const userWithRole = {
+        ...action.payload.user,
+        role: getUserRole(action.payload.user.email)
+      };
+      
+      state.user = userWithRole;
       state.token = action.payload.token;
-      // Lưu token vào localStorage
+      
+      // Lưu token và user vào localStorage
       localStorage.setItem('authToken', action.payload.token);
-      localStorage.setItem('user', JSON.stringify(action.payload.user));
+      localStorage.setItem('user', JSON.stringify(userWithRole));
     },
     loginFailure: (state, action) => {
       state.loading = false;

@@ -10,7 +10,21 @@ export const ListOfOrchids = [
     color: 'Pink',
     numberOfLike: 192,
     origin: 'Taiwan',
-    category: 'Cattleya'
+    category: 'Cattleya',
+    feedback: [
+      {
+        rating: 5,
+        comment: 'Absolutely stunning! The pink color is mesmerizing.',
+        author: 'john.doe@gmail.com',
+        date: '2024-01-15T10:30:00.000Z'
+      },
+      {
+        rating: 5,
+        comment: 'One of my favorite orchids! Highly recommend.',
+        author: 'maria.garcia@gmail.com',
+        date: '2024-02-20T14:45:00.000Z'
+      }
+    ]
   },
   {
     id: '2',
@@ -22,7 +36,15 @@ export const ListOfOrchids = [
     color: 'White',
     numberOfLike: 120,
     origin: 'Philippines',
-    category: 'Phalaenopsis'
+    category: 'Phalaenopsis',
+    feedback: [
+      {
+        rating: 4,
+        comment: 'Beautiful white orchid, very elegant!',
+        author: 'sarah.jones@gmail.com',
+        date: '2024-01-22T09:15:00.000Z'
+      }
+    ]
   },
   {
     id: '3',
@@ -34,7 +56,27 @@ export const ListOfOrchids = [
     color: 'Blue',
     numberOfLike: 250,
     origin: 'India',
-    category: 'Vanda'
+    category: 'Vanda',
+    feedback: [
+      {
+        rating: 5,
+        comment: 'The blue color is extraordinary! A must-see orchid.',
+        author: 'alex.nguyen@gmail.com',
+        date: '2024-02-05T11:20:00.000Z'
+      },
+      {
+        rating: 5,
+        comment: 'Rare and breathtaking beauty.',
+        author: 'linda.chen@gmail.com',
+        date: '2024-03-10T16:30:00.000Z'
+      },
+      {
+        rating: 4,
+        comment: 'Amazing orchid, though a bit hard to grow.',
+        author: 'tom.wilson@gmail.com',
+        date: '2024-03-18T13:45:00.000Z'
+      }
+    ]
   },
   {
     id: '4',
@@ -46,7 +88,8 @@ export const ListOfOrchids = [
     color: 'Purple',
     numberOfLike: 88,
     origin: 'Himalaya',
-    category: 'Dendrobium'
+    category: 'Dendrobium',
+    feedback: []
   },
   {
     id: '5',
@@ -58,7 +101,15 @@ export const ListOfOrchids = [
     color: 'Yellow',
     numberOfLike: 76,
     origin: 'Hybrid',
-    category: 'Cymbidium'
+    category: 'Cymbidium',
+    feedback: [
+      {
+        rating: 3,
+        comment: 'Nice yellow color, but not very unique.',
+        author: 'emily.brown@gmail.com',
+        date: '2024-01-28T14:00:00.000Z'
+      }
+    ]
   },
   {
     id: '6',
@@ -70,7 +121,8 @@ export const ListOfOrchids = [
     color: 'White-Purple',
     numberOfLike: 135,
     origin: 'Brazil',
-    category: 'Miltonia'
+    category: 'Miltonia',
+    feedback: []
   },
   {
     id: '7',
@@ -82,7 +134,15 @@ export const ListOfOrchids = [
     color: 'Green-Brown',
     numberOfLike: 300,
     origin: 'Borneo',
-    category: 'Paphiopedilum'
+    category: 'Paphiopedilum',
+    feedback: [
+      {
+        rating: 5,
+        comment: 'The king of orchids! Absolutely magnificent.',
+        author: 'david.lee@gmail.com',
+        date: '2024-02-14T10:00:00.000Z'
+      }
+    ]
   },
   {
     id: '8',
@@ -94,7 +154,8 @@ export const ListOfOrchids = [
     color: 'Red-Brown',
     numberOfLike: 95,
     origin: 'Hybrid',
-    category: 'Oncidium'
+    category: 'Oncidium',
+    feedback: []
   },
   {
     id: '9',
@@ -106,7 +167,8 @@ export const ListOfOrchids = [
     color: 'Green-Yellow',
     numberOfLike: 82,
     origin: 'Mexico',
-    category: 'Brassia'
+    category: 'Brassia',
+    feedback: []
   },
   {
     id: '10',
@@ -118,7 +180,8 @@ export const ListOfOrchids = [
     color: 'Pink-Purple',
     numberOfLike: 210,
     origin: 'Venezuela',
-    category: 'Cattleya'
+    category: 'Cattleya',
+    feedback: []
   },
   {
     id: '11',
@@ -130,7 +193,8 @@ export const ListOfOrchids = [
     color: 'White',
     numberOfLike: 99,
     origin: 'Nepal',
-    category: 'Coelogyne'
+    category: 'Coelogyne',
+    feedback: []
   },
   {
     id: '12',
@@ -142,7 +206,8 @@ export const ListOfOrchids = [
     color: 'Orange',
     numberOfLike: 65,
     origin: 'Central America',
-    category: 'Epidendrum'
+    category: 'Epidendrum',
+    feedback: []
   },
   {
     id: '13',
@@ -154,7 +219,8 @@ export const ListOfOrchids = [
     color: 'Purple-Green',
     numberOfLike: 110,
     origin: 'Brazil',
-    category: 'Zygopetalum'
+    category: 'Zygopetalum',
+    feedback: []
   },
   {
     id: '14',
@@ -166,7 +232,8 @@ export const ListOfOrchids = [
     color: 'Purple-White',
     numberOfLike: 185,
     origin: 'Brazil',
-    category: 'Laelia'
+    category: 'Laelia',
+    feedback: []
   },
   {
     id: '15',
@@ -178,7 +245,8 @@ export const ListOfOrchids = [
     color: 'Yellow-Brown',
     numberOfLike: 140,
     origin: 'Mexico',
-    category: 'Stanhopea'
+    category: 'Stanhopea',
+    feedback: []
   },
   {
     id: '16',
@@ -190,6 +258,7 @@ export const ListOfOrchids = [
     color: 'Yellow',
     numberOfLike: 125,
     origin: 'Guatemala',
-    category: 'Lycaste'
+    category: 'Lycaste',
+    feedback: []
   }
 ];

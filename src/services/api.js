@@ -95,6 +95,27 @@ export const deleteOrchid = async (id) => {
   }
 };
 
+// POST: Thêm feedback vào orchid
+export const addFeedbackToOrchid = async (id, feedbackData) => {
+  try {
+    // Lấy orchid hiện tại
+    const orchid = await getOrchidById(id);
+    
+    // Thêm feedback mới vào array
+    const updatedFeedback = [...(orchid.feedback || []), feedbackData];
+    
+    // Cập nhật orchid với feedback mới
+    const response = await api.put(`/orchids/${id}`, {
+      ...orchid,
+      feedback: updatedFeedback
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Error adding feedback to orchid ${id}:`, error);
+    throw error;
+  }
+};
+
 // ============ SEARCH & FILTER ============
 
 // Tìm kiếm orchids theo name

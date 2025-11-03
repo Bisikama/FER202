@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrchidById, clearSelectedOrchid } from '../../store/slices/orchidSlice';
 import { useTheme } from '../../hooks/useTheme';
+import FeedbackList from './FeedbackList';
+import FeedbackForm from './FeedbackForm';
+import { addFeedbackToOrchid } from '../../services/api';
 import '../SCSS/OrchidDetail.scss';
 
 export default function OrchidDetail() {
@@ -20,6 +23,17 @@ export default function OrchidDetail() {
       dispatch(clearSelectedOrchid());
     };
   }, [dispatch, id]);
+
+  // Handler để submit feedback
+  const handleSubmitFeedback = async (orchidId, feedbackData) => {
+    try {
+      await addFeedbackToOrchid(orchidId, feedbackData);
+      // Reload orchid để hiển thị feedback mới
+      dispatch(fetchOrchidById(orchidId));
+    } catch (error) {
+      throw new Error(error.message || 'Failed to submit feedback');
+    }
+  };
 
   // Loading state
   if (loading) {
@@ -135,6 +149,27 @@ export default function OrchidDetail() {
           <Link to="/" className="back-btn">
             ← Back to List
           </Link>
+        </div>
+
+        {/* Feedback Section */}
+        <div className="feedback-section" style={{ padding: '2rem', background: theme === 'dark' ? '#2d3748' : '#f8f9fa' }}>
+          <div className="container">
+            <div className="row g-4">
+              {/* Feedback Form */}
+              <div className="col-lg-6">
+                <FeedbackForm 
+                  orchidId={id}
+                  existingFeedback={orchid.feedback || []}
+                  onSubmitFeedback={handleSubmitFeedback}
+                />
+              </div>
+
+              {/* Feedback List */}
+              <div className="col-lg-6">
+                <FeedbackList feedback={orchid.feedback || []} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

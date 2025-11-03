@@ -4,16 +4,20 @@ import { Link } from 'react-router-dom';
 import { fetchOrchids, setFilterCategory, removeOrchid } from '../../store/slices/orchidSlice';
 import { useTheme } from '../../hooks/useTheme';
 import OrchidForm from './Forms/OrchidForm';
+import SearchBar from './SearchBar';
 import '../css/theme.css';
 
 export default function Orchids() {
   const dispatch = useDispatch();
   const { filteredOrchids, loading, error, filterCategory } = useSelector((state) => state.orchids);
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const { theme, toggleTheme } = useTheme();
   
   const [showForm, setShowForm] = useState(false);
   const [selectedOrchid, setSelectedOrchid] = useState(null);
+
+  // Check if user is admin
+  const isAdmin = isAuthenticated && user?.role === 'admin';
 
   // Fetch orchids khi component mount
   useEffect(() => {
@@ -27,8 +31,8 @@ export default function Orchids() {
 
   // Handle delete orchid
   const handleDelete = async (id) => {
-    if (!isAuthenticated) {
-      alert('⚠️ Please login to delete orchids!');
+    if (!isAdmin) {
+      alert('⚠️ Only administrators can delete orchids!');
       return;
     }
 
@@ -44,8 +48,8 @@ export default function Orchids() {
 
   // Handle edit orchid
   const handleEdit = (orchid) => {
-    if (!isAuthenticated) {
-      alert('⚠️ Please login to edit orchids!');
+    if (!isAdmin) {
+      alert('⚠️ Only administrators can edit orchids!');
       return;
     }
     setSelectedOrchid(orchid);
@@ -54,8 +58,8 @@ export default function Orchids() {
 
   // Handle add new orchid
   const handleAddNew = () => {
-    if (!isAuthenticated) {
-      alert('⚠️ Please login to add orchids!');
+    if (!isAdmin) {
+      alert('⚠️ Only administrators can add orchids!');
       return;
     }
     setSelectedOrchid(null);
@@ -78,7 +82,7 @@ export default function Orchids() {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="text-center flex-grow-1">🌸 List of Orchids</h2>
-        {isAuthenticated && (
+        {isAdmin && (
           <button 
             className="btn btn-success"
             onClick={handleAddNew}
@@ -87,6 +91,9 @@ export default function Orchids() {
           </button>
         )}
       </div>
+
+      {/* Search Bar */}
+      <SearchBar />
 
       {/* Filter Dropdown */}
       <div className="text-center mb-3">
@@ -158,7 +165,7 @@ export default function Orchids() {
                       >
                         👁️ Detail
                       </Link>
-                      {isAuthenticated && (
+                      {isAdmin && (
                         <>
                           <button 
                             className="btn btn-sm btn-outline-warning"

@@ -73,6 +73,28 @@ const initialState = {
   filterCategory: 'All',
 };
 
+// Helper function to apply combined filters
+const applyFilters = (state) => {
+  let filtered = state.orchids;
+
+  // Apply category filter
+  if (state.filterCategory === 'Natural') {
+    filtered = filtered.filter(orchid => orchid.isNatural === true);
+  } else if (state.filterCategory === 'Special') {
+    filtered = filtered.filter(orchid => orchid.isSpecial === true);
+  }
+  // 'All' means no category filter
+
+  // Apply search term filter
+  if (state.searchTerm !== '') {
+    filtered = filtered.filter(orchid =>
+      orchid.name?.toLowerCase().includes(state.searchTerm.toLowerCase())
+    );
+  }
+
+  state.filteredOrchids = filtered;
+};
+
 // Slice
 const orchidSlice = createSlice({
   name: 'orchids',
@@ -80,26 +102,13 @@ const orchidSlice = createSlice({
   reducers: {
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
-      // Filter orchids based on search term
-      if (action.payload === '') {
-        state.filteredOrchids = state.orchids;
-      } else {
-        state.filteredOrchids = state.orchids.filter(orchid =>
-          orchid.name?.toLowerCase().includes(action.payload.toLowerCase()) ||
-          orchid.category?.toLowerCase().includes(action.payload.toLowerCase())
-        );
-      }
+      // Apply combined filter
+      applyFilters(state);
     },
     setFilterCategory: (state, action) => {
       state.filterCategory = action.payload;
-      // Filter orchids based on category
-      if (action.payload === 'All') {
-        state.filteredOrchids = state.orchids;
-      } else if (action.payload === 'Natural') {
-        state.filteredOrchids = state.orchids.filter(orchid => orchid.isNatural === true);
-      } else if (action.payload === 'Special') {
-        state.filteredOrchids = state.orchids.filter(orchid => orchid.isSpecial === true);
-      }
+      // Apply combined filter
+      applyFilters(state);
     },
     clearSelectedOrchid: (state) => {
       state.selectedOrchid = null;
